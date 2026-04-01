@@ -11,12 +11,21 @@ proxy-providers:
   Subscribe: 
     url: 
     <<: *p
-    #override: # 修改节点前后缀时，需移除前方的 "#" 符号
+    #override: 
       #additional-prefix: "节点前缀"
       #additional-suffix: "节点后缀"
-  #Subscribe2: {url: http://your-service-provider, <<: *p}
-  #Subscribe3: {url: http://your-service-provider, <<: *p}
-  #Subscribe4: {url: http://your-service-provider, <<: *p}
+  #Subscribe2: 
+    #url: 
+    #<<: *p
+    #override: 
+      #additional-prefix: "节点前缀"
+      #additional-suffix: "节点后缀"
+  #Subscribe3: 
+    #url: 
+    #<<: *p
+    #override: 
+      #additional-prefix: "节点前缀"
+      #additional-suffix: "节点后缀"
 
 mixed-port: 7893
 tcp-concurrent: true
@@ -60,27 +69,28 @@ load-balance: &load-balance {type: load-balance, strategy: consistent-hashing, u
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 
 proxy-groups:
-  - {name: 节点选择, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点], icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Rocket.png}
-  - {name: 国外网站, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png}
-  - {name: Emby, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Emby.png}
-  - {name: 云盘服务, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/iCloud.png}
-  - {name: 电报消息, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Telegram.png}
-  - {name: 推特消息, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Twitter.png}
-  - {name: AI, <<: *pg, icon: https://raw.githubusercontent.com/Orz-3/mini/master/Color/OpenAI.png}
-  - {name: 游戏平台, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Game.png}
-  - {name: 哔哩哔哩, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/bilibili.png}
-  - {name: 巴哈姆特, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bahamut.png}
-  - {name: 谷歌服务, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Google_Search.png}
-  - {name: 微软服务, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Microsoft.png}
-  - {name: 数币平台, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png}
-  - {name: 仅限日本, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/JP.png}
-  - {name: 排除日本, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Reject.png}
-  - {name: 兜底分流, <<: *pg, icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Final.png}
-  - {name: 香港节点, <<: *url-test, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png}
-  - {name: 台湾节点, <<: *url-test, filter: "(?i)🇨🇳|🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Taiwan.png}
-  - {name: 日本节点, <<: *url-test, filter: "(?i)🇯🇵|日本|东京|(\b(JP|Japan)\b)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Japan.png}
-  - {name: 狮城节点, <<: *url-test, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png}
-  - {name: 美国节点, <<: *url-test, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\b(US|United States)\b)", icon: https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/United_States.png}
+  - {name: 节点选择, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  - {name: 国外网站, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
+  - {name: Emby, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Emby.png}
+  - {name: 云盘服务, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/iCloud.png}
+  - {name: 电报消息, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram.png}
+  - {name: 推特消息, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png}
+  - {name: AI, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
+  - {name: E-Hentai, <<: *pg, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/04ProxySoft/exhentai.png}
+  - {name: 游戏平台, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
+  - {name: 哔哩哔哩, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/bilibili.png}
+  - {name: 巴哈姆特, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Bahamut.png}
+  - {name: 谷歌服务, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
+  - {name: 微软服务, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
+  - {name: 数币平台, <<: *pg, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/04ProxySoft/Bitcoin.png}
+  - {name: 仅限日本, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/JP.png}
+  - {name: 排除日本, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Reject.png}
+  - {name: 兜底分流, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Final.png}
+  - {name: 香港节点, <<: *url-test, filter: "(?i)🇭🇰|香港|(\\b(HK|Hong)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Hong_Kong.png}
+  - {name: 台湾节点, <<: *url-test, filter: "(?i)🇨🇳|🇹🇼|台湾|(\\b(TW|Tai|Taiwan)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Taiwan.png}
+  - {name: 日本节点, <<: *url-test, filter: "(?i)🇯🇵|日本|东京|(\\b(JP|Japan)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
+  - {name: 狮城节点, <<: *url-test, filter: "(?i)🇸🇬|新加坡|狮|(\\b(SG|Singapore)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
+  - {name: 美国节点, <<: *url-test, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\\b(US|United States)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
 
 rule-providers:
   Direct: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/Direct.list}
@@ -95,6 +105,7 @@ rule-providers:
   Twitter: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Twitter.list}
   MoreAI: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/MoreAI.list}
   AI: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/AI.list}
+  E-Hentai: {<<: *c, url: https://github.com/powerfullz/override-rules/raw/main/ruleset/EHentai.list}
   Steam: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Steam.list}
   Epic: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Epic.list}
   BiliBili: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Bilibili.list}
@@ -122,6 +133,7 @@ rules:
   - RULE-SET,Twitter,推特消息
   - RULE-SET,MoreAI,AI
   - RULE-SET,AI,AI
+  - RULE-SET,E-Hentai,E-Hentai
   - RULE-SET,Steam,游戏平台
   - RULE-SET,Epic,游戏平台
   - RULE-SET,BiliBili,哔哩哔哩

@@ -31,7 +31,7 @@ function main(config) {
   config["dns"] = {
     "enable": true,
     "listen": "0.0.0.0:1053",
-    "ipv6": false,
+    "ipv6": true,
     "enhanced-mode": "fake-ip",
     "fake-ip-range": "198.18.0.1/16",
     "fake-ip-filter": ["+.lan", "*", "+.local", "+.cmpassport.com", "id6.me", "open.e.189.cn", "mdn.open.wo.cn", "opencloud.wostore.cn", "auth.wosms.cn", "+.10099.com.cn", "+.msftconnecttest.com", "+.msftncsi.com", "lancache.steamcontent.com"],
