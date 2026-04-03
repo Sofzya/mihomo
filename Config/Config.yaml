@@ -6,7 +6,7 @@
 #
 # 最后更新实践: 2026-04-02
 
-p: &p {type: http, interval: 86400, health-check: {enable: true, url: http://www.gstatic.com/generate_204, interval: 1800, timeout: 5000}}
+p: &p {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1800, timeout: 5000}}
 proxy-providers:
   Subscribe: 
     url: 
@@ -62,10 +62,10 @@ dns:
 
 # 锚点参数
 pg: &pg {type: select, proxies: [DIRECT, 节点选择, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点]}
-url-test: &url-test {type: url-test, url: http://www.gstatic.com/generate_204, interval: 300, tolerance: 0, include-all: true}
+url-test: &url-test {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 0, include-all: true}
 select: &select {type: select, include-all: true}
-fallback: &fallback {type: fallback, url: http://www.gstatic.com/generate_204, interval: 300, include-all: true}
-load-balance: &load-balance {type: load-balance, strategy: consistent-hashing, url: http://www.gstatic.com/generate_204, interval: 300, include-all: true}
+fallback: &fallback {type: fallback, url: https://www.gstatic.com/generate_204, interval: 300, include-all: true}
+load-balance: &load-balance {type: load-balance, strategy: consistent-hashing, url: https://www.gstatic.com/generate_204, interval: 300, include-all: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 
 proxy-groups:
