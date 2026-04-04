@@ -3,8 +3,6 @@
 # 以 '#' 或 '//' 开头的配置文件行为注释行
 #
 # Mihomo Version ≥ 1.8.10
-#
-# 最后更新实践: 2026-04-02
 
 p: &p {type: http, interval: 86400, health-check: {enable: true, url: https://www.gstatic.com/generate_204, interval: 1800, timeout: 5000}}
 proxy-providers:
@@ -62,17 +60,15 @@ dns:
 
 # 锚点参数
 pg: &pg {type: select, proxies: [DIRECT, 节点选择, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点]}
+select: &select {type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档"}
 url-test: &url-test {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 0, include-all: true}
-select: &select {type: select, include-all: true}
-fallback: &fallback {type: fallback, url: https://www.gstatic.com/generate_204, interval: 300, include-all: true}
-load-balance: &load-balance {type: load-balance, strategy: consistent-hashing, url: https://www.gstatic.com/generate_204, interval: 300, include-all: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
 
 proxy-groups:
-  - {name: 节点选择, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
+  - {name: 节点选择, <<: *select, proxies: [香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点], icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Rocket.png}
   - {name: 国外网站, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Global.png}
   - {name: Emby, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Emby.png}
-  - {name: 云盘服务, type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/iCloud.png}
+  - {name: 云盘服务, <<: *select, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/iCloud.png}
   - {name: 电报消息, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Telegram.png}
   - {name: 推特消息, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Twitter.png}
   - {name: AI, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/AI.png}
