@@ -47,7 +47,7 @@ tun:
   enable: true
   stack: system
   dns-hijack: [any:53]
-        
+
 dns:
   enable: true
   ipv6: true
@@ -59,7 +59,7 @@ dns:
   proxy-server-nameserver: [223.5.5.5, 119.29.29.29]
 
 # 锚点参数
-pg: &pg {type: select, proxies: [DIRECT, 节点选择, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点]}
+pg: &pg {type: select, proxies: [DIRECT, 节点选择, 香港节点, 台湾节点, 日本节点, 狮城节点, 美国节点, 家宽节点]}
 select: &select {type: select, include-all: true, exclude-filter: "流量|重置|到期|官网|网址|文档"}
 url-test: &url-test {type: url-test, url: https://www.gstatic.com/generate_204, interval: 300, tolerance: 0, include-all: true}
 c: &c {type: http, behavior: classical, format: text, interval: 86400}
@@ -76,6 +76,7 @@ proxy-groups:
   - {name: 游戏平台, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Game.png}
   - {name: 哔哩哔哩, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/bilibili.png}
   - {name: 巴哈姆特, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Bahamut.png}
+  - {name: CloudFlare, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Cloudflare.png}
   - {name: 谷歌服务, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Google_Search.png}
   - {name: 微软服务, <<: *pg, icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Microsoft.png}
   - {name: 数币平台, <<: *pg, icon: https://github.com/lige47/QuanX-icon-rule/raw/main/icon/04ProxySoft/Bitcoin.png}
@@ -87,25 +88,27 @@ proxy-groups:
   - {name: 日本节点, <<: *url-test, filter: "(?i)🇯🇵|日本|东京|(\\b(JP|Japan)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Japan.png}
   - {name: 狮城节点, <<: *url-test, filter: "(?i)🇸🇬|新加坡|狮|(\\b(SG|Singapore)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/Singapore.png}
   - {name: 美国节点, <<: *url-test, filter: "(?i)🇺🇸|美国|洛杉矶|圣何塞|(\\b(US|United States)\\b)", icon: https://github.com/Koolson/Qure/raw/master/IconSet/Color/United_States.png}
+  - {name: 家宽节点, <<: *url-test, filter: "家宽", icon: https://github.com/Orz-3/mini/raw/master/Color/China.png}
 
 rule-providers:
-  Direct: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/Direct.list}
-  CloudDrive: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/CloudDrive.list}
+  Direct: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/Direct.list}
+  CloudDrive: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/CloudDrive.list}
   MEGA: {<<: *c, url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/MEGA/MEGA.list}
-  OutJP: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/OutJP.list}
-  OnlyJP: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/OnlyJP.list}
-  Proxy: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/Proxy.list}
-  MoreEmby: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/MoreEmby.list}
+  OutJP: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/OutJP.list}
+  OnlyJP: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/OnlyJP.list}
+  Proxy: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/Proxy.list}
+  MoreEmby: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/MoreEmby.list}
   Emby: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Emby.list}
   Telegram: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Telegram.list}
   Twitter: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Twitter.list}
-  MoreAI: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/MoreAI.list}
+  MoreAI: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/MoreAI.list}
   AI: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/AI.list}
   E-Hentai: {<<: *c, url: https://github.com/powerfullz/override-rules/raw/main/ruleset/EHentai.list}
   Steam: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Steam.list}
   Epic: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Epic.list}
   BiliBili: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Bilibili.list}
   Bahamut: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Bahamut.list}
+  CloudFlare: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Cloudflare.list}
   YouTube: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/YouTube.list}
   Google: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Google.list}
   Github: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Github.list}
@@ -113,7 +116,7 @@ rule-providers:
   Microsoft: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Microsoft.list}
   OKX: {<<: *c, url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/OKX/OKX.list}
   Binance: {<<: *c, url: https://github.com/blackmatrix7/ios_rule_script/raw/master/rule/Clash/Binance/Binance.list}
-  Bybit: {<<: *c, url: https://github.com/Sofzya/Clash/raw/main/Rules/Bybit.list}
+  Bybit: {<<: *c, url: https://github.com/Sofzya/mihomo/raw/main/Rules/Bybit.list}
   Lan: {<<: *c, url: https://github.com/Repcz/Tool/raw/X/mihomo/Rules/Lan.list}
 
 rules:
@@ -134,6 +137,7 @@ rules:
   - RULE-SET,Epic,游戏平台
   - RULE-SET,BiliBili,哔哩哔哩
   - RULE-SET,Bahamut,巴哈姆特
+  - RULE-SET,CloudFlare,CloudFlare
   - RULE-SET,YouTube,谷歌服务
   - RULE-SET,Google,谷歌服务
   - RULE-SET,Github,微软服务
